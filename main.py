@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Describe Your Ex in One Word.
+"""Satu kata untuk mantan, ditulis ke sebuah berkas.
 
-Writes exactly one word -- the verdict on an ex -- to entry.txt.
-The word is "knockoff": a cheap imitation of a real partner.
+Program kecil ini tidak meminta masukan apa pun dan tidak mencetak
+apa pun ke layar. Ia hanya menyimpan satu kata pilihan ke dalam
+berkas bernama entry.txt, di dalam folder keluaran yang ditentukan
+oleh lingkungan. Kata itu sengaja ditulis apa adanya, tanpa baris
+baru di ujungnya, supaya berkas hasil akhirnya berisi tepat kata
+tersebut dan tidak ada tambahan lain.
 """
 
 import os
@@ -11,13 +15,12 @@ WORD = "knockoff"
 
 
 def main():
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    # Never delete the output directory itself (it may be a mount point);
-    # just make sure it exists and write the file inside it.
-    os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        f.write(WORD)
+    """Tulis kata yang dipilih ke entry.txt di folder keluaran."""
+    folder = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(folder, exist_ok=True)
+    tujuan = os.path.join(folder, "entry.txt")
+    with open(tujuan, "w", encoding="utf-8") as berkas:
+        berkas.write(WORD)
 
 
 if __name__ == "__main__":
